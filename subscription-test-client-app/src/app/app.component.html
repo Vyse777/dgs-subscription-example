@@ -1,0 +1,35 @@
+<div class="main-container">
+  <div style="background-color: grey;" fxFlex fxLayout="column" fxLayoutAlign="center center">
+    <mat-card style="height: 150px; width: 350px;">
+      <mat-card-title>GraphQL Subscription Demo</mat-card-title>
+      <mat-card-content style="height: 100%;" class="mat-typography" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+        <div>
+          <span>Subscription Status:</span>
+          <b [ngClass]="{'unknown-status': aggregationState.toString() === 'Uninitialized', 'online-status': aggregationState.toString() == 'Connected', 'disconnected-status': aggregationState.toString() == 'Disconnected', 'error-status': aggregationState.toString() == 'Error'}">
+            {{aggregationState.toString()}}
+          </b>
+        </div>
+        <div fxLayout="row">
+          Aggregation Status: {{ this.aggregationStatus == "DONE" ? "Accounts are up to date!" : this.aggregationStatus == "AGGREGATING" ? "Accounts Aggregating" : "Unknown" }} <span style="padding-left: 8px;">
+            <mat-progress-spinner *ngIf="aggregationStatus=='AGGREGATING'" color="primary" mode="indeterminate" diameter="20"></mat-progress-spinner>
+          </span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<mat-card style="position: fixed; bottom: 0; right: 0; margin: 8px;">
+  <mat-card-title>Triggers</mat-card-title>
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutAlign="start none" fxLayoutGap="16px">
+      <div>
+        <button mat-raised-button color="primary" (click)="subscriptionButtonClick()">Create
+          Subscription</button>
+      </div>
+      <div>
+        <button mat-raised-button color="primary" (click)="toggleAggregationStatus()">Toggle Aggregation Status</button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

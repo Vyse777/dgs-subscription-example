@@ -1,0 +1,29 @@
+type Subscription {
+    aggregationStatus(customerId: String!): AggregationStatusResponse
+}
+
+type AggregationStatusResponse {
+    customerId: String
+    status: AggregationStatus
+}
+
+enum AggregationStatus {
+    AGGREGATING
+    DONE
+}
+
+type Query {
+    repeatAfterMe(message: String!): QueryResponse!
+}
+
+type QueryResponse {
+    message: String!
+}
+
+type Mutation {
+    updateThing: UpdateThingResponse
+}
+
+type UpdateThingResponse {
+    message: String!
+}
